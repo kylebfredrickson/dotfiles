@@ -7,17 +7,15 @@ function setup_git() {
 function setup_nvim() {
     path=$1
     brew list nvim &> /dev/null || brew install nvim
+    rm $HOME/.config/nvim
+    rm -rf $HOME/.local/share/nvim
+    rm -rf $HOME/.local/state/nvim
     ln -sf $path $HOME/.config/nvim
 }
 
-function setup_terminal_nvim() {
-    path=$1
-    setup_nvim $path
-
-    # install nvim dependencies
+function install_nvim_deps() {
     brew list ripgrep &> /dev/null || brew install ripgrep # telescope
-    brew list font-hack-nerd-font &> /dev/null ||
-        brew install font-hack-nerd-font # nice symbols
+    brew list font-hack-nerd-font &> /dev/null || brew install font-hack-nerd-font # nice symbols
     brew list node &> /dev/null || brew install node # pyright
 }
 
@@ -44,29 +42,29 @@ function install_rust() {
 
 function main() {
     if [[ $# -lt 1 ]]; then
-        echo "usage: $0 --[all, env, nvim, nvim-terminal, other]"
+        echo "usage: $0 --[all, env, vscode, nvim, other]"
     fi
 
     env=false
+    vscode=false
     nvim=false
-    terminal=false
     other=false
 
     for i in "$@"; do
         case $i in
             --all)
                 env=true
-                nvim=true
+                vscode=true
                 other=true
                 ;;
             --env)
                 env=true
                 ;;
+            --vscode)
+                vscode=true
+                ;;
             --nvim)
                 nvim=true
-                ;;
-            --nvim-terminal)
-                terminal=true
                 ;;
             --other)
                 other=true
@@ -84,12 +82,13 @@ function main() {
         setup_zsh
     fi
 
-    if $nvim; then
-        setup_nvim $HOME/.dotfiles/nvim
+    if $vscode; then
+        setup_nvim $HOME/.dotfiles/nvim-vscode
     fi
 
-    if $terminal; then
-        setup_terminal_nvim $HOME/.dotfiles/nvim-terminal
+    if $nvim; then
+        setup_nvim $HOME/.dotfiles/nvim-terminal
+        install_nvim_deps
     fi
 
     if $other; then
