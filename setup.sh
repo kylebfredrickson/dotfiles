@@ -19,6 +19,12 @@ function install_nvim_deps() {
     brew list node &> /dev/null || brew install node # pyright
 }
 
+function uninstall_nvim_deps() {
+    brew list ripgrep &> /dev/null && brew uninstall ripgrep # telescope
+    brew list font-hack-nerd-font &> /dev/null && brew uninstall font-hack-nerd-font # nice symbols
+    brew list node &> /dev/null && brew uninstall node # pyright
+}
+
 function setup_zsh() {
     ln -sf $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
 }
@@ -84,6 +90,7 @@ function main() {
 
     if $vscode; then
         setup_nvim $HOME/.dotfiles/nvim-vscode
+        uninstall_nvim_deps
     fi
 
     if $nvim; then
