@@ -4,37 +4,23 @@ function setup_git() {
     ln -sf $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
 }
 
-function setup_nvim() {
-    path=$1
-    brew list nvim &> /dev/null || brew install nvim
-    rm $HOME/.config/nvim
-    rm -rf $HOME/.local/share/nvim
-    rm -rf $HOME/.local/state/nvim
-    ln -sf $path $HOME/.config/nvim
-}
-
-function install_nvim_deps() {
-    brew list warp &> /dev/null || brew install --cask warp
-    ln -sf $HOME/.dotfiles/warp $HOME/.warp
-
-    brew list ripgrep &> /dev/null || brew install ripgrep # telescope
-    brew list font-hack-nerd-font &> /dev/null ||
-        brew install font-hack-nerd-font # nice symbols
-    brew list node &> /dev/null || brew install node # pyright
-}
-
-function uninstall_nvim_deps() {
-    brew list warp &> /dev/null && brew uninstall --cask warp
-    rm $HOME/.warp
-
-    brew list ripgrep &> /dev/null && brew uninstall ripgrep # telescope
-    brew list font-hack-nerd-font &> /dev/null && 
-        brew uninstall font-hack-nerd-font # nice symbols
-    brew list node &> /dev/null && brew uninstall node # pyright
-}
-
 function setup_zsh() {
     ln -sf $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
+}
+
+function setup_helix() {
+    brew list helix &> /dev/null && brew uninstall --cask helix
+
+    ln -sf -f $HOME/.dotfiles/helix $HOME/.config/helix
+}
+
+function setup_nvim() {
+    brew list nvim &> /dev/null || brew install nvim
+
+    ln -sf -f $1 $HOME/.config/nvim
+
+    rm -rf $HOME/.local/share/nvim
+    rm -rf $HOME/.local/state/nvim
 }
 
 function setup_vscode() {
@@ -42,11 +28,9 @@ function setup_vscode() {
         brew install --cask visual-studio-code
 }
 
-function setup_helix() {
-    brew list helix &> /dev/null && brew uninstall --cask helix
-
-    ln -sf $HOME/.dotfiles/helix $HOME/.config/helix
-
+function setup_warp() {
+    brew list warp &> /dev/null || brew install --cask warp
+    ln -sf $HOME/.dotfiles/warp $HOME/.warp
 }
 
 function install_mactex() {
@@ -68,40 +52,30 @@ function install_rust() {
 
 function install_misc() {
     brew list tree &> /dev/null || brew install tree
+
+    # git symbols
+    brew list font-hack-nerd-font &> /dev/null && 
+        brew uninstall font-hack-nerd-font
 }
 
 function main() {
     if [[ $# -lt 1 ]]; then
-        echo "usage: $0 --[all, env, vscode, nvim, helix, other]"
+        echo "usage: $0 --[helix, nvim, vscode]"
     fi
-
-    env=false
-    vscode=false
-    nvim=false
-    helix=false
-    other=false
 
     for i in "$@"; do
         case $i in
-            --all)
-                env=true
-                vscode=true
-                other=true
-                ;;
-            --env)
-                env=true
-                ;;
-            --vscode)
-                vscode=true
+            --helix)
+                setup_helix
+                setup_warp
                 ;;
             --nvim)
-                nvim=true
+                setup_nvim $HOME/.dotfiles/nvim-terminal
+                setup_warp
                 ;;
-            --helix)
-                helix=true
-                ;;
-            --other)
-                other=true
+            --vscode)
+                setup_vscode
+                setup_nvim $HOME/.dotfiles/nvim-vscode
                 ;;
         esac
     done
@@ -111,32 +85,12 @@ function main() {
         /bin/bash -c "$(curl -fsSL $url)"
     fi
 
-    if $env; then
-        setup_git
-        setup_zsh
-    fi
-
-    if $vscode; then
-        setup_vscode
-        setup_nvim $HOME/.dotfiles/nvim-vscode
-        uninstall_nvim_deps
-    fi
-
-    if $nvim; then
-        setup_nvim $HOME/.dotfiles/nvim-terminal
-        install_nvim_deps
-    fi
-
-    if $helix; then
-        setup_helix
-    fi
-
-    if $other; then
-        install_haskell
-        install_rust
-        install_mactex
-        install_misc
-    fi
+    setup_git
+    setup_zsh
+    install_misc
+    install_haskell
+    install_rust
+    install_mactex
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
