@@ -1,10 +1,10 @@
-export EDITOR=nvim
+export EDITOR=hx
 export DOTFILES=$HOME/.dotfiles
 
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 
-export EDITOR="nvim"
+export EDITOR="hx"
 export CLICOLOR=1
 
 # Load config files

@@ -4,3 +4,6 @@
 [submodule "nvim-vscode"]
 	path = nvim-vscode
 	url = git@github.com:kylebfredrickson/nvim-vscode.git
+[submodule "helix"]
+	path = helix
+	url = git@github.com:kylebfredrickson/helix.git
