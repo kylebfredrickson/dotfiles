@@ -22,24 +22,29 @@ function setup_vscode() {
         brew install --cask visual-studio-code
 }
 
-function install_misc() {
-    # install tree
-    brew list tree &> /dev/null || brew install tree
-
-    # install mactex
-    brew list mactex-no-gui &> /dev/null || brew install --cask mactex-no-gui
-    eval "$(/usr/libexec/path_helper)"
-    sudo ln -sf $HOME/.dotfiles/misc/latexindent.yaml /usr/local/texlive/2023/texmf-dist/scripts/latexindent/defaultSettings.yaml
-
-    # install rust
-    if ! command -v rustup &> /dev/null; then
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    fi
-
-    # install haskell
+function install_haskell() {
     if ! command -v ghcup &> /dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
     fi
+}
+
+function install_mactex() {
+    brew list mactex-no-gui &> /dev/null || brew install --cask mactex-no-gui
+    eval "$(/usr/libexec/path_helper)"
+    sudo ln -sf $HOME/.dotfiles/misc/latexindent.yaml /usr/local/texlive/2023/texmf-dist/scripts/latexindent/defaultSettings.yaml
+}
+
+function install_rust() {
+    if ! command -v rustup &> /dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    fi
+}
+
+function install_misc() {
+    brew list tree &> /dev/null || brew install tree
+    install_haskell
+    install_mactex
+    install_rust
 }
 
 function main() {
