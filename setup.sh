@@ -9,7 +9,7 @@ function setup_zsh() {
 }
 
 function setup_nvim() {
-    brew list nvim &> /dev/null || brew install --cask nvim
+    brew list nvim &> /dev/null || brew install --cask neovim
 
     ln -sf -f $1 $HOME/.config/nvim
 
@@ -29,6 +29,7 @@ function install_misc() {
     # install mactex
     brew list mactex-no-gui &> /dev/null || brew install --cask mactex-no-gui
     eval "$(/usr/libexec/path_helper)"
+    sudo ln -sf $HOME/.dotfiles/misc/latexindent.yaml /usr/local/texlive/2023/texmf-dist/scripts/latexindent/defaultSettings.yaml
 
     # install rust
     if ! command -v rustup &> /dev/null; then
