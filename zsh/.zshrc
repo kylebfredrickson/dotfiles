@@ -1,4 +1,4 @@
-export EDITOR=nvim
+export EDITOR=vim
 export DOTFILES=$HOME/.dotfiles
 
 export LC_ALL=en_US.utf-8

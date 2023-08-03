@@ -1,6 +1,0 @@
-[submodule "nvim-vscode"]
-	path = nvim-vscode
-	url = git@github.com:kylebfredrickson/nvim-vscode.git
-[submodule "nvim-terminal"]
-	path = nvim-terminal
-	url = git@github.com:kylebfredrickson/nvim-terminal.git

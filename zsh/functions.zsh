@@ -1,10 +1,10 @@
-function vicd() {
+function ecd() {
     local dir=$1;
     local file=$2;
     local olddir=$(pwd);
 
     cd $dir;
-    vi $file;
+    e $file;
     cd $olddir;
 }
 

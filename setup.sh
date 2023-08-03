@@ -41,10 +41,11 @@ function install_rust() {
 }
 
 function install_misc() {
-    brew list tree &> /dev/null || brew install tree
     install_haskell
     install_mactex
     install_rust
+
+    brew list tree &> /dev/null || brew install tree
 }
 
 function main() {
@@ -58,7 +59,6 @@ function main() {
     install_misc
 
     setup_vscode
-    setup_nvim $HOME/.dotfiles/nvim-vscode
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
