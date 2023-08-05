@@ -8,13 +8,7 @@ function setup_zsh() {
     ln -sf $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
 }
 
-function setup_nvim() {
-    brew list nvim &> /dev/null || brew install --cask neovim
-
-    ln -sf -f $1 $HOME/.config/nvim
-
-    rm -rf $HOME/.local/share/nvim
-    rm -rf $HOME/.local/state/nvim
+function setup_vim() {
 }
 
 function setup_vscode() {
@@ -31,7 +25,6 @@ function install_haskell() {
 function install_mactex() {
     brew list mactex-no-gui &> /dev/null || brew install --cask mactex-no-gui
     eval "$(/usr/libexec/path_helper)"
-    sudo ln -sf $HOME/.dotfiles/misc/latexindent.yaml /usr/local/texlive/2023/texmf-dist/scripts/latexindent/defaultSettings.yaml
 }
 
 function install_rust() {
@@ -58,6 +51,7 @@ function main() {
     setup_zsh
     install_misc
 
+    setup_vim
     setup_vscode
 }
 
