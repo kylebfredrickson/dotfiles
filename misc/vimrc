@@ -1,0 +1,68 @@
+"""
+""" Behavior
+"""
+
+" Search
+set hlsearch " Highlight search.
+set incsearch " Search incrementally.
+set ignorecase " Ignore case if no capitals.
+set smartcase " Respect case if there are capitals.
+
+" Indentation
+set tabstop=4 " Tabs correspond to 4 spaces.
+set shiftwidth=0 " Width of indentation shifting. (0 emulates tabstop)
+set softtabstop=4 " Number of spaces in a tab.
+set expandtab " Use softtabs.
+set smarttab " Use shiftwidth.
+set shiftround " Round indentation to shiftwidth.
+set autoindent " Copy indentation on next line.
+set smartindent " Smart indentation.
+set breakindent " Indent line wraps.
+
+" Menus
+set wildmenu " Show completions on tab.
+set wildmode=longest,list " Emulate bash.
+
+" Window
+set wrap " Wrap at window.
+set textwidth=80 " Wrap plaintext at 80.
+
+set scrolloff=8 " Maintain 8 lines of vertical context.
+set sidescroll=0 " Do not scroll horizontally.
+
+" Misc
+set backspace=indent,eol,start " Backspace behaves normally.
+set nojoinspaces " No extra spaces on join.
+set modelines=0 " Disables modeline (prevents security issue).
+set gdefault " Global search and replace by default.
+set nocompatible " Enables user overrides.
+
+"""
+""" Visual
+"""
+
+" Line numbers
+set number " Sets absolute line number on cursorline.
+set relativenumber " Relative lines elsewhere.
+
+" Highlighting
+syntax on " Syntax highlighting.
+set showmatch " Shows matching characters.
+
+" Misc
+set showmode " Show mode.
+set ruler " Show position in file.
+
+"""
+""" Keymaps
+"""
+
+" Normal
+nnoremap L $
+nnoremap H ^
+
+nnoremap U <c-r>
+
+" Visual
+vnoremap L $
+vnoremap H ^

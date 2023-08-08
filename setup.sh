@@ -5,10 +5,11 @@ function setup_git() {
 }
 
 function setup_zsh() {
-    ln -sf $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
+    ln -sf $HOME/.dotfiles/zsh/zshrc $HOME/.zshrc
 }
 
 function setup_vim() {
+    ln -sf $HOME/.dotfiles/misc/vimrc $HOME/.vimrc
 }
 
 function setup_vscode() {
@@ -49,10 +50,12 @@ function main() {
 
     setup_git
     setup_zsh
-    install_misc
 
     setup_vim
     setup_vscode
+
+    install_misc
+
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
