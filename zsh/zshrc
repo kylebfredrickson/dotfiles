@@ -4,6 +4,7 @@ export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 
 export CLICOLOR=1
+export DOTFILES=$HOME/.dotfiles
 
 # Load config files
 for config_file ("$DOTFILES"/zsh/*.zsh(N)); do
