@@ -36,6 +36,7 @@ set nojoinspaces " No extra spaces on join.
 set modelines=0 " Disables modeline (prevents security issue).
 set gdefault " Global search and replace by default.
 set nocompatible " Enables user overrides.
+set hidden " Buffer switching without saving.
 
 """
 """ Visual
