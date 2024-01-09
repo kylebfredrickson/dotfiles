@@ -60,6 +60,3 @@ set ruler " Show position in file.
 
 " Normal
 nnoremap U <c-r>
-nnoremap j gj
-nnoremap k gk
-
