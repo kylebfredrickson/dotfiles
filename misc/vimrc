@@ -60,8 +60,3 @@ set ruler " Show position in file.
 
 " Normal
 nnoremap U <c-r>
-nnoremap H ^
-nnoremap L $
-
-vnoremap H ^
-vnoremap L $
