@@ -35,7 +35,7 @@ function install_rust() {
 }
 
 function install_misc() {
-    install_haskell
+    # install_haskell
     install_mactex
     install_rust
 

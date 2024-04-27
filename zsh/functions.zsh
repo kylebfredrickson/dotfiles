@@ -1,13 +1,3 @@
-function ecd() {
-    local dir=$1;
-    local file=$2;
-    local olddir=$(pwd);
-
-    cd $dir;
-    e $file;
-    cd $olddir;
-}
-
 function mtcd() {
     local dir=$1;
     local file=$2;

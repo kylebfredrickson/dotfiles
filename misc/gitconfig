@@ -3,3 +3,5 @@
     email = kyfredri@ucsc.edu
 [core]
 	excludesFile = ~/.dotfiles/misc/gitignore
+[pull]
+	rebase = false
