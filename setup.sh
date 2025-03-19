@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function setup_git() {
-    ln -sf $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
+    ln -sf $HOME/.dotfiles/misc/gitconfig $HOME/.gitconfig
 }
 
 function setup_zsh() {
@@ -13,12 +13,11 @@ function setup_vim() {
 }
 
 function setup_vscode() {
-    brew list visual-studio-code &> /dev/null ||
-        brew install --cask visual-studio-code
+    brew list visual-studio-code &> /dev/null || brew install --cask visual-studio-code
 }
 
 function install_python() {
-
+    brew list python &> /dev/null || brew install python
 }
 
 function install_rust() {
@@ -43,6 +42,8 @@ function main() {
         url=https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
         /bin/bash -c "$(curl -fsSL $url)"
     fi
+
+    export PATH=/opt/homebrew/bin:$PATH
 
     setup_git
     setup_zsh
