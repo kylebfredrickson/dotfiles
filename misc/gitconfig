@@ -1,6 +1,6 @@
 [user]
     name = Kyle Fredrickson
-    email = kyfredri@ucsc.edu
+    email = kyle.b.fredrickson@gmail.com
 [core]
 	excludesFile = ~/.dotfiles/misc/gitignore
 [pull]

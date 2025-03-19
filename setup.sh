@@ -17,6 +17,16 @@ function setup_vscode() {
         brew install --cask visual-studio-code
 }
 
+function install_python() {
+
+}
+
+function install_rust() {
+    if ! command -v rustup &> /dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    fi
+}
+
 function install_haskell() {
     if ! command -v ghcup &> /dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
@@ -28,20 +38,6 @@ function install_mactex() {
     eval "$(/usr/libexec/path_helper)"
 }
 
-function install_rust() {
-    if ! command -v rustup &> /dev/null; then
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    fi
-}
-
-function install_misc() {
-    # install_haskell
-    install_mactex
-    install_rust
-
-    brew list tree &> /dev/null || brew install tree
-}
-
 function main() {
     if ! command -v brew &> /dev/null; then
         url=https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
@@ -50,12 +46,12 @@ function main() {
 
     setup_git
     setup_zsh
-
     setup_vim
     setup_vscode
 
-    install_misc
-
+    # Install misc.
+    install_python
+    install_rust
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

@@ -61,6 +61,12 @@ set ruler " Show position in file.
 " Normal
 nnoremap U <c-r>
 nnoremap H ^
-vnoremap H ^
 nnoremap L $
+
+" Visual
+vnoremap H ^
 vnoremap L $
+inoremap jk <Esc>
+
+"Insert
+inoremap jk <Esc>

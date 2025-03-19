@@ -30,3 +30,4 @@ fi
 
 # load plugins
 zplug load
+eval "$(rbenv init -)"
