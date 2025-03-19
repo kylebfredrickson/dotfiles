@@ -13,7 +13,8 @@ function setup_vim() {
 }
 
 function setup_vscode() {
-    brew list visual-studio-code &> /dev/null || brew install --cask visual-studio-code
+    brew list visual-studio-code &> /dev/null ||
+        brew install --cask visual-studio-code
 }
 
 function install_python() {
@@ -41,9 +42,8 @@ function main() {
     if ! command -v brew &> /dev/null; then
         url=https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
         /bin/bash -c "$(curl -fsSL $url)"
+        export PATH=/opt/homebrew/bin:$PATH
     fi
-
-    export PATH=/opt/homebrew/bin:$PATH
 
     setup_git
     setup_zsh
@@ -53,6 +53,11 @@ function main() {
     # Install misc.
     install_python
     install_rust
+    # install_mactex
+    # install_haskell
+
+    # Misc. settings.
+    defaults write -g ApplePressAndHoldEnabled -bool false
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
