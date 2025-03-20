@@ -56,8 +56,10 @@ function main() {
     # install_mactex
     # install_haskell
 
-    # Misc. settings.
+    # Misc. settings/setup.
+    ssh-keygen -t ed25519 -f $HOME/.ssh/id_ed25519
     defaults write -g ApplePressAndHoldEnabled -bool false
+    /bin/zsh $HOME/.zshrc
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
