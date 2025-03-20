@@ -12,5 +12,5 @@ if [ ! -d ~/.dotfiles ]; then
     git clone https://github.com/kylebfredrickson/dotfiles.git ~/.dotfiles
 fi
 
-/bin/bash ~/.dotfiles/setup.sh
+/bin/zsh ~/.dotfiles/setup.sh
 ```
