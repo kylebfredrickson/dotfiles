@@ -2,6 +2,6 @@
     name = Kyle Fredrickson
     email = kyle.b.fredrickson@gmail.com
 [core]
-	excludesFile = ~/.dotfiles/misc/gitignore
+    excludesFile = ~/.dotfiles/misc/gitignore
 [pull]
-	rebase = false
+    rebase = false
