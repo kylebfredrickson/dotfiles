@@ -30,7 +30,6 @@ lang:
 app:
 	brew install --cask docker
 	brew install --cask omnigraffle
-	brew install --cask spotify
 	brew install --cask visual-studio-code
 	brew install --cask whatsapp
 
