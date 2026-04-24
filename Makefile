@@ -1,8 +1,8 @@
 SSH_TYPE=ed25519
 
-.PHONY=all brew setup lang app backup
+.PHONY=all brew setup prog app backup
 
-all: brew setup lang app
+all: brew setup prog app
 	defaults write -g ApplePressAndHoldEnabled -bool false
 
 brew:
@@ -26,12 +26,14 @@ $(HOME)/.zshrc:
 lang:
 	/bin/bash install.sh python
 	/bin/bash install.sh rust
+    /bin/bash install.sh claude
 
 app:
 	brew install --cask docker
 	brew install --cask omnigraffle
 	brew install --cask visual-studio-code
 	brew install --cask whatsapp
+	brew install --cask zoom
 
 backup:
 	echo backup

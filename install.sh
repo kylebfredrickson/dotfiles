@@ -8,6 +8,12 @@ function brew() {
     fi
 }
 
+function claude() {
+    if ! command -v claude &> /dev/null; then
+        curl -fsSL https://claude.ai/install.sh | bash
+    fi
+}
+
 function haskell() {
     if ! command -v ghcup &> /dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
